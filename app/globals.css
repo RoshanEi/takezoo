@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import xterm.js styles */
+@import '@xterm/xterm/css/xterm.css';
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Monaco Editor Styles */
+.monaco-editor {
+  @apply bg-background;
+}
+
+.monaco-editor .margin {
+  @apply bg-background;
+}
+
+.monaco-editor .monaco-editor-background {
+  @apply bg-background;
+}
+
+/* Terminal Styles */
+.xterm {
+  @apply bg-background;
+}
+
+.xterm .xterm-viewport {
+  @apply bg-background;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+/* File Tree Styles */
+.file-tree-item {
+  @apply flex items-center gap-2 px-2 py-1 text-sm hover:bg-accent rounded cursor-pointer;
+}
+
+.file-tree-item.selected {
+  @apply bg-accent text-accent-foreground;
+}
+
+.file-tree-item.modified {
+  @apply text-yellow-500;
+}
+
+.file-tree-item.new {
+  @apply text-green-500;
+}
+
+/* Editor Tab Styles */
+.editor-tab {
+  @apply flex items-center gap-2 px-3 py-2 text-sm border-r border-border bg-background hover:bg-accent;
+}
+
+.editor-tab.active {
+  @apply bg-accent text-accent-foreground;
+}
+
+.editor-tab.modified::after {
+  content: "●";
+  @apply text-yellow-500 ml-1;
+}
+
+/* Chat Message Styles */
+.chat-message {
+  @apply mb-4 p-3 rounded-lg;
+}
+
+.chat-message.user {
+  @apply bg-primary text-primary-foreground ml-8;
+}
+
+.chat-message.assistant {
+  @apply bg-muted text-muted-foreground mr-8;
+}
+
+.chat-message.system {
+  @apply bg-secondary text-secondary-foreground text-center text-xs;
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Resizable Panel Styles */
+.resize-handle {
+  @apply bg-border hover:bg-accent transition-colors;
+}
+
+.resize-handle:hover {
+  @apply bg-primary;
+}
+
+/* Command Palette Styles */
+.command-palette {
+  @apply fixed inset-0 z-50 bg-background/80 backdrop-blur-sm;
+}
+
+.command-palette-content {
+  @apply fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 bg-background border border-border rounded-lg shadow-lg;
+}
+
+/* Syntax Highlighting Overrides */
+.monaco-editor .token.comment {
+  @apply text-muted-foreground;
+}
+
+.monaco-editor .token.string {
+  @apply text-green-400;
+}
+
+.monaco-editor .token.keyword {
+  @apply text-blue-400;
+}
+
+.monaco-editor .token.number {
+  @apply text-orange-400;
+}
+
+.monaco-editor .token.function {
+  @apply text-yellow-400;
+}
+
+/* AI Chat Styles */
+.ai-thinking {
+  @apply animate-pulse;
+}
+
+.ai-thinking::after {
+  content: "●●●";
+  @apply text-primary;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Status Bar */
+.status-bar {
+  @apply bg-secondary text-secondary-foreground text-xs px-2 py-1 border-t border-border;
+}
+
+/* Minimap Styles */
+.monaco-editor .minimap {
+  @apply bg-background border-l border-border;
+}
+
+/* Breadcrumb Styles */
+.breadcrumb {
+  @apply flex items-center gap-1 text-sm text-muted-foreground px-2 py-1 border-b border-border;
+}
+
+.breadcrumb-item {
+  @apply hover:text-foreground cursor-pointer;
+}
+
+.breadcrumb-separator {
+  @apply text-muted-foreground mx-1;
+}
